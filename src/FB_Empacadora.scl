@@ -1,0 +1,41 @@
+﻿FUNCTION_BLOCK "Empacadora"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Sensor : Bool;
+      Reset : Bool;
+   END_VAR
+
+   VAR_OUTPUT 
+      Electrovalvula : Bool;
+   END_VAR
+
+   VAR_IN_OUT 
+      Contador_Cajas : DInt;
+   END_VAR
+
+   VAR 
+      TOF_Empaque {InstructionName := 'TOF_TIME'; LibVersion := '1.0'; S7_SetPoint := 'False'} : TOF_TIME;
+      Ctb_Botellas {InstructionName := 'CTU_DINT'; LibVersion := '1.0'} : CTU_DINT;
+      Flanco_Caja {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+   END_VAR
+
+
+BEGIN
+	#Ctb_Botellas(CU := #Sensor,
+	              R := #Reset OR #TOF_Empaque.Q,
+	              PV := 6);
+	
+	#TOF_Empaque(IN := #Ctb_Botellas.QU,
+	             PT := T#2s);
+	
+	#Electrovalvula := #TOF_Empaque.Q;
+	
+	#Flanco_Caja(CLK := #Ctb_Botellas.QU);
+	
+	IF #Flanco_Caja.Q THEN
+	    #Contador_Cajas := #Contador_Cajas + 1;
+	END_IF;
+	
+END_FUNCTION_BLOCK
+

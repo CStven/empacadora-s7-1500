@@ -1,0 +1,15 @@
+# TIA Portal — proyecto y respaldos (no va al repo)
+*.ap1[6-9]
+*.ap1[6-9]_*
+*.ap2[0-9]
+*.dbf
+*.zip
+*_backup*
+
+# Archivos de sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Capturas temporales
+*.tmp
