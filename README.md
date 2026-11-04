@@ -1,4 +1,4 @@
-# P1 — Empacadora de botellas (S7-1500 / TIA Portal V19)
+# P1 — Empacadora de botellas (S7-1500 · CPU 1512C-1 PN · TIA Portal V19)
 
 Proyecto de aprendizaje de automatización industrial: empaque de botellas por lotes de 6, con conteo, temporización de la electroválvula y totalizador de cajas.
 
@@ -60,6 +60,12 @@ Llamada desde `OB1` (en LAD; los bloques LAD no se pueden exportar como fuente, 
 - **Reset por el pin `Q` del `TOF`, no por la salida `#Electrovalvula`.** La salida física puede tener otros escritores (HMI, modo manual); usar el pin de la instancia garantiza un único dueño.
 - **`R_TRIG` en el conteo de cajas.** Hoy es redundante porque `QU` ya dura un ciclo, pero desacopla la lógica del diseño del reset: si el reset se retrasa, sin detector de flanco se contaría una caja por ciclo de scan.
 - **Suma directa en vez de `CTU` para las cajas.** `CTU` sirve para contar hacia una meta (`PV`); para un totalizador no hay meta, y con `PV := 0` la salida `QU` queda inútil en 1.
+
+## Capturas
+
+![FB Empacadora en SCL](docs/01_fb_scl.png)
+
+![Simulación con OB1](docs/02_simulacion.png)
 
 ## Cómo probarlo
 
