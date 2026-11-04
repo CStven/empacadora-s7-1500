@@ -63,9 +63,9 @@ Llamada desde `OB1` (en LAD; los bloques LAD no se pueden exportar como fuente, 
 
 ## Capturas
 
-![FB Empacadora en SCL](docs/01_fb_scl.png)
+<img src="docs/01_fb_scl.png" width="800" alt="FB Empacadora en SCL">
 
-![Simulación con OB1](docs/02_simulacion.png)
+<img src="docs/02_simulacion.png" width="800" alt="Llamada desde OB1 en simulacion">
 
 ## Cómo probarlo
 
